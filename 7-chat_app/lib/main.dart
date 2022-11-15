@@ -1,7 +1,16 @@
 import 'package:chat_app/pages/login_page.dart';
+import 'package:chat_app/pages/register_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  //* initializing firebase (https://firebase.flutter.dev/docs/overview/) : initialization section
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(ScholarChat());
 }
 
@@ -12,7 +21,12 @@ class ScholarChat extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      routes: {
+        //! map used to navigate with pushnamed onTap (register_page.dart)
+        'LoginPage': (context) => LoginPage(),
+        RegisterPage.id: (context) => RegisterPage(),
+      },
+      initialRoute: 'LoginPage',
     );
   }
 }
