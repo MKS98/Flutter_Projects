@@ -1,3 +1,4 @@
+import 'package:chat_app/pages/chat_page.dart';
 import 'package:chat_app/pages/login_page.dart';
 import 'package:chat_app/pages/register_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,10 +24,11 @@ class ScholarChat extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         //! map used to navigate with pushnamed onTap (register_page.dart)
-        'LoginPage': (context) => LoginPage(),
+        LoginPage.id: (context) => LoginPage(),
         RegisterPage.id: (context) => RegisterPage(),
+        ChatPage.id: (context) => ChatPage(),
       },
-      initialRoute: 'LoginPage',
+      initialRoute: LoginPage.id,
     );
   }
 }
